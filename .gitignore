@@ -3,3 +3,4 @@ senzing_volume/data
 senzing_volume/g2
 senzing_volume/etc
 senzing_volume/var
+*.lic

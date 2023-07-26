@@ -17,3 +17,33 @@ cd siren-er-quick-start
 ```
 docker-compose up -d
 ```
+
+## Running with a license
+1. uncomment the following lines in the .env file
+```
+SENZING_ENGINE_CONFIGURATION_JSON='{
+ "PIPELINE" : {
+ "CONFIGPATH" : "/etc/opt/senzing",
+ "RESOURCEPATH" : "/opt/senzing/g2/resources",
+ "SUPPORTPATH" : "/opt/senzing/data",
+ "LICENSEFILE" : "/opt/senzing/g2/g2.lic"
+ },
+ "SQL" : { "CONNECTION" : "postgresql://G2:password@host.docker.internal:5432:G2" }
+}'
+```
+
+2. create the g2 directory under senzing_volume
+```
+mkdir senzing_volume/g2
+```
+
+3. copy your license file to the g2 directory
+```
+cp g2.lic senzing_volume/g2/g2.lic
+```
+
+4. Run docker compose
+```
+docker-compose up -d
+```
+

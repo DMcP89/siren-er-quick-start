@@ -1,3 +1,4 @@
+version: "2.2"
 services:
 
   rabbitmq:
@@ -78,6 +79,7 @@ services:
       - ${SENZING_RPM_DIR}:/data
     environment:
       - SENZING_ACCEPT_EULA=I_ACCEPT_THE_SENZING_EULA
+      - SENZING_ENGINE_CONFIGURATION_JSON
     command: -y localinstall /data/senzingdata-v3-3.0.0-22119.x86_64.rpm /data/senzingapi-3.6.0-23160.x86_64.rpm
 
 
@@ -92,6 +94,7 @@ services:
     environment:
       - SENZING_DATABASE_URL=${SENZING_DATABASE_URL}
       - SENZING_SQL_FILES=/opt/senzing/g2/resources/schema/g2core-schema-postgresql-create.sql /app/insert-senzing-configuration.sql
+      - SENZING_ENGINE_CONFIGURATION_JSON
     volumes:
       - ${SENZING_VOLUME}/g2:/opt/senzing/g2
     extra_hosts:
@@ -106,6 +109,7 @@ services:
     user: root
     environment:
       - SENZING_DATABASE_URL=${SENZING_DATABASE_URL}
+      - SENZING_ENGINE_CONFIGURATION_JSON
     volumes:
       - ${SENZING_VOLUME}/data/4.0.1:/opt/senzing/data
       - ${SENZING_VOLUME}/etc:/etc/opt/senzing
@@ -138,6 +142,7 @@ services:
       - SENZING_THREADS_PER_PROCESS=4
       - SENZING_RABBITMQ_USE_EXISTING_ENTITIES=true
       - SENZING_RABBITMQ_HEARTBEAT_IN_SECONDS=10000
+      - SENZING_ENGINE_CONFIGURATION_JSON
     volumes:
       - ${SENZING_VOLUME}/data/4.0.1:/opt/senzing/data
       - ${SENZING_VOLUME}/etc:/etc/opt/senzing
